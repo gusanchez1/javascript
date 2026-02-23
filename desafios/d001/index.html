@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Desafio das Mensagens</h1>
+    <button id="btn1" onclick="callAlert1()">Botão 1</button>
+    <button id="btn2" onclick="callAlert2()">Botão 2</button>
+    <button id="btn3" onclick="callAlert3()">Botão 3</button>
+
+    <script>
+        /*
+        function callAlert1() {
+            window.alert('Você clicou no 1º botão!')
+        }
+
+        function callAlert2() {
+            window.alert('Você clicou no 2º botão!')
+        }
+
+        function callAlert3() {
+            window.alert('Você clicou no 3º botão!')
+        } 
+        */
+
+        document.getElementById('btn1').addEventListener('click', function() {
+            alert('Você clicou no 1º botão!')
+        })
+
+        document.getElementById('btn2').addEventListener('click', function() {
+            alert('Você clicou no 2º botão!')
+        })
+
+        document.getElementById('btn3').addEventListener('click', function() {
+            alert('Você clicou no 3º botão!')
+        })
+    </script>
+</body>
+</html>

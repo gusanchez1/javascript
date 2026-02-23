@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antes e Depois</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Antes e depois</h1>
+    <button id="btn">Antecessor e Sucessor</button>
+
+    <script>
+    document.getElementById('btn').addEventListener('click', function() {
+        var num = Number(prompt('Digite um número qualquer:'))
+
+        var antes = num - 1
+        var depois = num + 1
+
+        alert(`Antes de ${num}, temos o número ${antes}.
+Depois de ${num}, temos o número ${depois}.`)
+    })
+</script>
+</body>
+</html>
