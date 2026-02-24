@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor R$ -> US$</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor R$ → US$</h1>
+    <button id="btn">Converter</button>
+    <h2 id="title"></h2>
+    <p id="text">Clique no botão acima para iniciar</p>
+
+    <script>
+        var dolar = Number(prompt('Antes de mais nada, quanto está a cotação do dólar agora?'))
+
+        if (isNaN(dolar) || dolar <= 0) {
+            alert('Cotação inválida. Recarregue a página.')
+        }
+
+        document.getElementById('btn').addEventListener('click', function () {
+
+            var brl = Number(prompt('Quantos R$ você tem na carteira?'))
+
+            if (isNaN(brl) || brl < 0) {
+                alert('Valor inválido.')
+                return
+            }
+
+            var usd = brl / dolar
+
+            var h2 = document.getElementById('title')
+            h2.innerHTML = `${brl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} equivalem a:`
+
+            var p = document.getElementById('text')
+            p.innerHTML = `
+                ${usd.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}<br><br>
+                Cotação utilizada: ${dolar.toLocaleString('pt-BR')}
+            `
+        })
+    </script>
+</body>
+</html>
