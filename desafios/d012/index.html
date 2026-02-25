@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preço mudou</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        #resultado p {
+            line-height: 1.5rem;
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Preço mudou</h1>
+    <button id="btn">Verificar</button>
+    <div id="resultado">
+        <p>Clique no botão acima para analisar a mudança de preço</p>
+    </div>
+
+    <script>
+        var btn = document.getElementById('btn')
+        var resultado = document.getElementById('resultado')
+
+        btn.addEventListener('click', function() {
+
+            var precoAnterior = prompt('Qual era o preço anterior do produto?')
+            var precoAtual = prompt('Qual é o preço atual do produto?')
+
+            if (precoAnterior === null || precoAnterior.trim() === '' || precoAtual === null || precoAtual.trim() === '') {
+                alert('Operação cancelada ou valor inválido')
+                return
+            }
+
+            precoAnterior = Number(precoAnterior)
+            precoAtual = Number(precoAtual)
+
+            if (Number.isNaN(precoAnterior) || Number.isNaN(precoAtual)) {
+                alert('Digite apenas números')
+                return
+            }
+
+            if (precoAnterior === 0) {
+                alert('Não é possível calcular porcentagem com preço anterior igual a zero.')
+                return
+            }
+
+            resultado.innerHTML = ''
+
+            var h2 = document.createElement('h2')
+            h2.innerText = 'Analisando os valores informados'
+            resultado.appendChild(h2)
+
+            var p1 = document.createElement('p')
+            p1.innerText = `O produto custava ${precoAnterior.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} e agora custa ${precoAtual.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}.`
+            resultado.appendChild(p1)
+
+            var p2 = document.createElement('p')
+            var p3 = document.createElement('p')
+            var p4 = document.createElement('p')
+
+            if (precoAtual > precoAnterior) {
+                p2.innerText = 'Hoje o produto está mais caro.'
+
+                var diferenca = precoAtual - precoAnterior
+                var porcentagem = ((diferenca / precoAnterior) * 100).toFixed(2)
+
+                p3.innerText = `O preço subiu ${diferenca.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} em relação ao preço anterior.`
+
+                p4.innerText = `Uma variação de ${porcentagem}% para cima.`
+
+            } else if (precoAtual < precoAnterior) {
+
+                p2.innerText = 'Hoje o produto está mais barato.'
+
+                var diferenca = precoAnterior - precoAtual
+                var porcentagem = ((diferenca / precoAnterior) * 100).toFixed(2)
+
+                p3.innerText = `O preço caiu ${diferenca.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} em relação ao preço anterior.`
+
+                p4.innerText = `Uma variação de ${porcentagem}% para baixo.`
+
+            } else {
+
+                p2.innerText = 'Hoje o produto está o mesmo preço.'
+                resultado.appendChild(p2)
+                return
+            }
+
+            resultado.appendChild(p2)
+            resultado.appendChild(p3)
+            resultado.appendChild(p4)
+
+        })
+    </script>
+</body>
+</html>

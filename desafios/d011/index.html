@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ano Bissexto</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        #resultado p {
+            margin: 6px 0;
+        }
+
+        .bissexto {
+            background-color: rgba(0, 128, 0, 0.500);
+        }
+
+        .nao-bissexto {
+            background-color: rgba(255, 0, 0, 0.500);
+        }
+    </style>
+</head>
+<body>
+    <h1>Ano Bissexto</h1>
+    <button id="btn">Verificar</button>
+    <div id="resultado">
+        <p>Informe um ano para saber se ele é bissexto</p>
+    </div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function () {
+
+            var entrada = prompt('Qual é o ano que você quer verificar?')
+
+            if (entrada === null || entrada.trim() === '') {
+                alert('Operação cancelada ou valor inválido')
+                return
+            }
+
+            var ano = Number(entrada)
+
+            if (Number.isNaN(ano)) {
+                alert('Digite um ano válido')
+                return
+            }
+
+            var resultado = document.getElementById('resultado')
+            resultado.innerHTML = ''
+
+            var h2 = document.createElement('h2')
+            h2.innerText = `Analisando o ano de ${ano}...`
+            resultado.appendChild(h2)
+
+            var p = document.createElement('p')
+
+            if ((ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0) {
+                p.innerHTML = `O ano de ${ano} <mark class="bissexto"><strong>É BISSEXTO</strong></mark>&#x2705`
+            } else {
+                p.innerHTML = `O ano de ${ano} <mark class="nao-bissexto"><strong>NÃO É BISSEXTO</strong></mark>&#x274C`
+            }
+
+            resultado.appendChild(p)
+        })
+    </script>
+</body>
+</html>

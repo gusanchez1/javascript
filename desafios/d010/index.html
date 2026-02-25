@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolvendo Bhaskara</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        #resultado p {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resolvendo Bhaskara</h1>
+    <button id="btn">Calcular</button>
+    <h2 id="title"></h2>
+    <div id="resultado">
+        <p>Considerando uma equação no formato <i><strong>ax<sup>2</sup> + bx + c </strong>= 0</i>, aperte o botão acima para calcular o valor de Δ.</p>
+    </div>
+
+    <script>
+
+        document.getElementById('btn').addEventListener('click', function() {
+
+            var a = prompt('Qual é o valor de a?')
+            var b = prompt('Qual é o valor de b?')
+            var c = prompt('Qual é o valor de c?')
+
+            if (a === null || b === null || c === null ||
+                a.trim() === '' || b.trim() === '' || c.trim() === '') {
+                alert('Operação cancelada ou valor vazio')
+                return
+            }
+
+            a = Number(a)
+            b = Number(b)
+            c = Number(c)
+
+            if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c)) {
+                alert('Digite valores válidos')
+                return
+            }
+
+            var delta = b ** 2 - 4 * a * c
+
+            document.getElementById('title').innerText = 'Resolvendo Bhaskara'
+
+            var resultado = document.getElementById('resultado')
+            resultado.innerHTML = ""
+
+            var p1 = document.createElement('p')
+            p1.innerHTML = `A equação atual é <strong>${a}x<sup>2</sup> + ${b}x + ${c} = 0`
+
+            var p2 = document.createElement('p')
+            p2.innerHTML = `O cálculo realizado será <strong>Δ = ${b}<sup>2</sup> - 4 . ${a} . ${c}`
+
+            var p3 = document.createElement('p')
+            p3.innerHTML = `O valor calculado foi <mark><strong>Δ = ${delta}</strong></mark>`
+
+            resultado.appendChild(p1)
+            resultado.appendChild(p2)
+            resultado.appendChild(p3)
+        })
+
+    </script>
+</body>
+</html>
