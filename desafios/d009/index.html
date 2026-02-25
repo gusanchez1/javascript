@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reajustar salário</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        #resultado p {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reajuste salarial</h1>
+    <button id="btn">Reajustar Salário</button>
+    <h2 id="title"></h2>
+    <div id="resultado">
+        <p>Clique no botão acima para iniciar.</p>
+    </div>
+
+    <script>
+    document.getElementById('btn').addEventListener('click', function() {
+
+        var nomeFunc = prompt('Qual é o nome do funcionário?')
+
+        var salarioFunc = Number(prompt(`Qual é o salário de ${nomeFunc}?`))
+
+        var porcentagemAjuste = Number(prompt(`O salário de ${nomeFunc} vai ser reajustado em qual porcentagem?`))
+
+        if (!nomeFunc || nomeFunc.trim() === "" || 
+            isNaN(salarioFunc) || 
+            isNaN(porcentagemAjuste)) {
+            alert('Digite dados válidos!')
+            return
+        }
+
+        var valorAumento = salarioFunc * porcentagemAjuste / 100
+
+        var salarioFinal = salarioFunc + valorAumento
+
+        document.getElementById('title').innerText =
+            `${nomeFunc} recebeu um aumento salarial!`
+
+        var resultado = document.getElementById('resultado')
+        resultado.innerHTML = ""
+
+        var p1 = document.createElement("p")
+        p1.innerText = `O salário atual era de ${salarioFunc.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}.`
+
+        var p2 = document.createElement("p")
+        p2.innerText = `Com um aumento ${porcentagemAjuste}%, O salário vai aumentar R$ ${valorAumento.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} no próximo.`
+
+        var p3 = document.createElement("p")
+        p3.innerText = `E a partir daí, ${nomeFunc} vai passar a ganhar R$ ${salarioFinal.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}.`
+
+        resultado.appendChild(p1)
+        resultado.appendChild(p2)
+        resultado.appendChild(p3)
+})
+</script>
+</body>
+</html>

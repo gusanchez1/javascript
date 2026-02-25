@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Desconto</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        #resultado p {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calcular Desconto</h1>
+    <button id="btn">Desconto de 10%</button>
+
+    <h2 id="title"></h2>
+
+    <div id="resultado">
+        <p>Clique no botão acima para iniciar.</p>
+    </div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function() {
+
+            var produto = prompt('Qual é o produto que você está comprando?')
+            var precoProduto = Number(prompt(`Qual é o preço de ${produto}?`))
+
+            if (!produto || isNaN(precoProduto)) {
+                alert("Preencha os dados corretamente.")
+                return
+            }
+
+            var desconto = 10
+            var valorDesconto = precoProduto * desconto / 100
+            var valorFinal = precoProduto - valorDesconto
+
+            document.getElementById('title').innerText =
+                `Calculando desconto de 10% para ${produto}`
+
+            var resultado = document.getElementById('resultado')
+
+            resultado.innerHTML = ""
+
+            var p1 = document.createElement("p")
+            p1.innerText = `O preço original era ${precoProduto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}.`
+
+            var p2 = document.createElement("p")
+            p2.innerText = `Você acaba de ganhar ${valorDesconto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} de desconto (-10%).`
+
+            var p3 = document.createElement("p")
+            p3.innerText = `No fim, você vai pagar ${valorFinal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} no produto ${produto}.`
+
+            resultado.appendChild(p1)
+            resultado.appendChild(p2)
+            resultado.appendChild(p3)
+        })
+    </script>
+
+</body>
+</html>
