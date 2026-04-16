@@ -18,7 +18,7 @@ document.querySelector("#adicionar").addEventListener("click", function () {
     input.value = "";
     input.focus();
 
-    res.innerHTML = ""
+    res.innerHTML = "";
   }
 });
 
